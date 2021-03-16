@@ -17,7 +17,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        buildConfigField("String", "API_KEY", "\"PLACE_YOUR_CIVICS_API_KEY_HERE\"")
+        buildConfigField("String", "API_KEY", "\"API_KEY_HERE\"")
     }
     buildTypes {
         release {
@@ -63,6 +63,7 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit: $version_retrofit"
     implementation "com.squareup.retrofit2:converter-moshi:$version_retrofit"
     implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$version_retrofit_coroutines_adapter"
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.5.0'
 
     // Moshi
     implementation "com.squareup.moshi:moshi:$version_moshi"
