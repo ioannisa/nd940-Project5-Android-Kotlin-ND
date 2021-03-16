@@ -1,5 +1,6 @@
 package com.example.android.politicalpreparedness.election
 
+import android.util.Log
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -33,6 +34,7 @@ class ElectionsViewModel(database: ElectionDatabase): ViewModel() {
 
     // Depending on the period to fetch, ask the Repository to fetch the period items from the DB
     val electionsList = database.electionDao.getElections()
+    val savedElectioinsList = database.electionDao.getFollowedElections()
 
     //TODO: Create live data val for saved elections
 
@@ -51,10 +53,4 @@ class ElectionsViewModel(database: ElectionDatabase): ViewModel() {
     fun onElectionItemNavigated() {
         _navigateToElectionDetail.value = null
     }
-}
-
-@BindingAdapter("listData")
-fun bindRecyclerView(recyclerView: RecyclerView, data: List<Election>?){
-    val adapter = recyclerView.adapter as ElectionListAdapter
-    adapter.submitList(data)
 }

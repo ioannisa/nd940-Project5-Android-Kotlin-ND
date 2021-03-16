@@ -25,7 +25,6 @@
             android:id="@+id/upcomingButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
             android:text="@string/btn_upcoming_elections"
             app:layout_constraintBottom_toTopOf="@+id/representativeButton"
             app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"

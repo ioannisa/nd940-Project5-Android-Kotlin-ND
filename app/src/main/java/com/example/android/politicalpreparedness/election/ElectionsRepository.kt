@@ -12,7 +12,6 @@ class ElectionsRepository(private val database: ElectionDatabase) {
     var status = MutableLiveData<NETWORK_STATUS>(NETWORK_STATUS.INITIALIZING)
 
     suspend fun refreshElections(){
-
         withContext(Dispatchers.Main){
             try {
                 status.value = NETWORK_STATUS.INITIALIZING

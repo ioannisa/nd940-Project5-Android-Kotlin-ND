@@ -28,8 +28,7 @@ data class Election(
 /**
  * ROOM helper table to hold the IDs of the elections to follow
  */
-@Parcelize
 @Entity(tableName = "follow_election_table")
 data class FollowElection(
         @PrimaryKey val id: Int
-) : Parcelable
+)

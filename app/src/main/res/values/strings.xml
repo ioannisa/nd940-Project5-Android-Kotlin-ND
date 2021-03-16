@@ -8,4 +8,7 @@
     <string name="application_logo_description">Application Logo</string>
     <string name="upcoming_elections">Upcoming Elections</string>
     <string name="saved_elections">Saved Elections</string>
+
+    <string name="btn_text_follow">Follow Election</string>
+    <string name="btn_text_unfollow">Unfollow Election</string>
 </resources>

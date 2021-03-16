@@ -15,6 +15,9 @@ class CivicsHttpClient: OkHttpClient() {
 
 
         fun getClient(): OkHttpClient {
+
+            // The HttpLoggingInterceptor is not a requirement of the project
+            // it is added to display logs of the data received for debugging purposes
             val logging = HttpLoggingInterceptor(object : HttpLoggingInterceptor.Logger {
                 override fun log(message: String) {
                     Log.d("TEST", "HttpLoggingInterceptor: $message")
