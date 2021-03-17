@@ -1,24 +1,21 @@
 package com.example.android.politicalpreparedness.election
 
-import android.util.Log
-import androidx.databinding.BindingAdapter
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import androidx.recyclerview.widget.RecyclerView
-import com.example.android.politicalpreparedness.database.ElectionDao
+import android.app.Application
+import androidx.lifecycle.*
 import com.example.android.politicalpreparedness.database.ElectionDatabase
-import com.example.android.politicalpreparedness.election.adapter.ElectionListAdapter
-import com.example.android.politicalpreparedness.network.CivicsApiService
 import com.example.android.politicalpreparedness.network.models.Election
 import kotlinx.coroutines.launch
 
-//TODO: Construct ViewModel and provide election datasource
-class ElectionsViewModel(database: ElectionDatabase): ViewModel() {
+//TODO COMPLETED: Construct ViewModel and provide election datasource
+class ElectionsViewModel(application: Application): AndroidViewModel(application) {
 
     //TODO: Create live data val for upcoming elections
-    private val repository = ElectionsRepository(database)
+    private val repository = ElectionsRepository(ElectionDatabase.getInstance(application))
+
+    //TODO COMPLETED: Create live data val for saved elections
+    //TODO COMPLETED: Create val and functions to populate live data for upcoming elections from the API and saved elections from local database
+    val electionsList: LiveData<List<Election>> = repository.electionsList
+    val savedElectioinsList: LiveData<List<Election>> = repository.savedElectioinsList
 
     init{
         refreshData()
@@ -32,16 +29,7 @@ class ElectionsViewModel(database: ElectionDatabase): ViewModel() {
         }
     }
 
-    // Depending on the period to fetch, ask the Repository to fetch the period items from the DB
-    val electionsList = database.electionDao.getElections()
-    val savedElectioinsList = database.electionDao.getFollowedElections()
-
-    //TODO: Create live data val for saved elections
-
-    //TODO: Create val and functions to populate live data for upcoming elections from the API and saved elections from local database
-
-    //TODO: Create functions to navigate to saved or upcoming election voter info
-
+    //TODO COMPLETED: Create functions to navigate to saved or upcoming election voter info
     private val _navigateToElectionDetail = MutableLiveData<Election>()
     val navigateToElectionDetail
         get() = _navigateToElectionDetail

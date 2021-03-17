@@ -14,7 +14,8 @@ import java.util.Locale
 class DetailFragment : Fragment() {
 
     companion object {
-        //TODO: Add Constant for Location request
+        //TODO COMPLETED: Add Constant for Location request
+        private const val ACCESS_FINE_LOCATION = 1
     }
 
     //TODO: Declare ViewModel
