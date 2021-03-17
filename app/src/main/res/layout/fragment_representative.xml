@@ -23,6 +23,7 @@
             style="@style/heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
             android:text="@string/representative_search"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,6 +37,8 @@
             android:autofillHints=""
             android:hint="@string/address_line_1"
             android:inputType="textPostalAddress"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/search_title"
             tools:text="Address Line 1" />
@@ -49,6 +52,8 @@
             android:autofillHints=""
             android:hint="@string/address_line_2"
             android:inputType="textPostalAddress"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/address_line_1" />
 
@@ -61,6 +66,7 @@
             android:autofillHints=""
             android:hint="@string/city"
             android:inputType="textPostalAddress"
+            android:paddingLeft="16dp"
             app:layout_constraintEnd_toStartOf="@id/state"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/address_line_2" />
@@ -75,6 +81,7 @@
             android:autofillHints=""
             android:entries="@array/states"
             android:inputType="textPostalAddress"
+            android:paddingRight="16dp"
             app:layout_constraintBottom_toBottomOf="@id/city"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/city"
@@ -90,6 +97,7 @@
             android:hint="@string/zip"
             android:inputType="number"
             android:maxLength="5"
+            android:paddingLeft="16dp"
             app:layout_constraintEnd_toEndOf="@id/city"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/city" />
@@ -99,6 +107,7 @@
             android:id="@+id/button_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
             android:text="@string/find_my_representatives"
             app:layout_constraintTop_toBottomOf="@id/zip" />
 
@@ -117,6 +126,7 @@
             style="@style/heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
             android:text="@string/my_representatives"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/button_location" />
