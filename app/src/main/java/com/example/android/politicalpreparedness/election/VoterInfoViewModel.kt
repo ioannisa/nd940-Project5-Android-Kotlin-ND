@@ -1,22 +1,61 @@
 package com.example.android.politicalpreparedness.election
 
-import android.util.Log
 import androidx.lifecycle.*
-import androidx.room.Database
-import com.example.android.politicalpreparedness.database.ElectionDao
 import com.example.android.politicalpreparedness.database.ElectionDatabase
+import com.example.android.politicalpreparedness.network.CivicsApi
+import com.example.android.politicalpreparedness.network.models.Division
 import com.example.android.politicalpreparedness.network.models.Election
+import com.example.android.politicalpreparedness.network.models.VoterInfoResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+
 class VoterInfoViewModel(private val database: ElectionDatabase, private val election: Election) : ViewModel() {
 
-    //TODO: Add live data to hold voter info
+    //TODO COMPLETED: Add live data to hold voter info
+    val voterInfo = MutableLiveData<VoterInfoResponse>()
 
+    private val _url = MutableLiveData<String?>()
+    val url: LiveData<String?>
+        get() = _url
 
+    fun setUrl(url: String?){
+        _url.value = url
+    }
 
     //TODO: Add var and methods to populate voter info
+
+    /**
+     * Helper method to produce address to pass to retrofit for voter info
+     */
+    private fun getDivisionAdr(division: Division): String{
+        val result = StringBuilder()
+
+        if (division.state   != "") result.append(division.state)
+        if (division.country != ""){
+            if (result.toString()!="")
+                result.append(", ")
+
+            result.append(division.country)
+        }
+
+        return result.toString()
+    }
+
+    private suspend fun fetchVotersInfo() = withContext(Dispatchers.IO) {
+        val response = CivicsApi.retrofitService.getVoterInfo(getDivisionAdr(election.division), election.id)
+
+        if (response.isSuccessful) {
+            voterInfo.postValue(response.body())
+        }
+    }
+
+    init{
+        viewModelScope.launch {
+            fetchVotersInfo()
+        }
+    }
 
     //TODO: Add var and methods to support loading URLs
 

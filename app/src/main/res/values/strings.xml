@@ -11,4 +11,8 @@
 
     <string name="btn_text_follow">Follow Election</string>
     <string name="btn_text_unfollow">Unfollow Election</string>
+    <string name="corresponding_address">Corresponding Address</string>
+    <string name="state_information">State Information</string>
+    <string name="ballot_information">Ballot Information</string>
+    <string name="voting_locations">Voting Locations</string>
 </resources>

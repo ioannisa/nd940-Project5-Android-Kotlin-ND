@@ -1,7 +1,10 @@
 package com.example.android.politicalpreparedness.election
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.android.politicalpreparedness.databinding.FragmentElectionBinding
@@ -28,20 +31,29 @@ class VoterInfoFragment : Fragment() {
         binding.viewModel = viewModel
 
 
-        //TODO: Populate voter info -- hide views without provided data.
+        //TODO COMPLETED: Populate voter info -- hide views without provided data. --> Implemented at XML with DataBinding
         /**
         Hint: You will need to ensure proper data is provided from previous fragment.
         */
 
 
-        //TODO: Handle loading of URLs
+        //TODO COMPLETED: Handle loading of URLs
+        viewModel.url.observe(viewLifecycleOwner, { url ->
+            url?.let{
+                viewModel.setUrl(null)
+                loadUrl(url)
+            }
+        })
 
-        //TODO: Handle save button UI state
-        //TODO: cont'd Handle save button clicks
+        //TODO COMPLETED: Handle save button UI state      --> Implemented at ViewModel
+        //TODO COMPLETED: cont'd Handle save button clicks --> Implemented at ViewModel
 
         return binding.root
     }
 
-    //TODO: Create method to load URL intents
-
+    //TODO COMPLETED: Create method to load URL intents
+    private fun loadUrl(url: String) {
+        val implicit = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        startActivity(implicit)
+    }
 }
