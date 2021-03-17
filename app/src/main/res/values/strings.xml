@@ -19,4 +19,11 @@
     <string name="website">website</string>
     <string name="facebook">facebook</string>
     <string name="twitter">twitter</string>
+    <string name="representative_search">Representative Search</string>
+    <string name="use_my_location">Use My Location</string>
+    <string name="find_my_representatives">Find My Representatives</string>
+    <string name="address_line_1">Address Line 1</string>
+    <string name="address_line_2">Address Line 2</string>
+    <string name="city">City</string>
+    <string name="zip">Zip</string>
 </resources>
