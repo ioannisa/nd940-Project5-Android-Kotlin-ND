@@ -21,7 +21,7 @@ class DetailFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+                              savedInstanceState: Bundle?): View {
 
         //TODO: Establish bindings
         val binding = FragmentLaunchBinding.inflate(inflater)

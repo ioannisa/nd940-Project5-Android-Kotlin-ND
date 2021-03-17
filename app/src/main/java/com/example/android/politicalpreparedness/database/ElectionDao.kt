@@ -44,6 +44,9 @@ interface ElectionDao {
     @Query("SELECT CASE id WHEN NULL THEN 0 ELSE 1 END FROM follow_election_table WHERE id = :idElection")
     fun isElectionFollowed(idElection: Int): LiveData<Int>
 
+    /**
+     * Follow an election by either passing its ID, or the election object itself
+     */
     @Query("INSERT INTO follow_election_table (id) VALUES(:idElection)")
     suspend fun followElection(idElection: Int)
     suspend fun followElection(election: Election){
@@ -54,6 +57,9 @@ interface ElectionDao {
     @Delete
     fun deleteElection(election: Election)
 
+    /**
+     * Unollow an election by either passing its ID, or the election object itself
+     */
     @Query("DELETE FROM follow_election_table WHERE id = :idElection")
     suspend fun unfollowElection(idElection: Int)
     suspend fun unfollowElection(election: Election){
