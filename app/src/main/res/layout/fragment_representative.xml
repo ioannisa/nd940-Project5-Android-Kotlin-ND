@@ -111,6 +111,7 @@
             app:layout_constraintTop_toBottomOf="@id/button_search" />
 
         <!-- TODO: Add visual styling and content -->
+        <!-- TODO: Add Representatives RecyclerView -->
         <TextView
             android:id="@+id/representative_title"
             style="@style/heading"
@@ -120,7 +121,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/button_location" />
 
-        <!-- TODO: Add Representatives RecyclerView -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_representatives"
             android:layout_width="match_parent"
