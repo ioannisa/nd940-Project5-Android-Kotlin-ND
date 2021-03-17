@@ -18,9 +18,6 @@ import com.example.android.politicalpreparedness.network.models.Election
 class ElectionsFragment: Fragment() {
 
     //TODO COMPLETED: Declare ViewModel
-    //private val viewModel by viewModels<ElectionsViewModel> {
-    //    ElectionsViewModelFactory(requireContext())
-    //}
     private lateinit var viewModel: ElectionsViewModel
 
     override fun onCreateView(inflater: LayoutInflater,

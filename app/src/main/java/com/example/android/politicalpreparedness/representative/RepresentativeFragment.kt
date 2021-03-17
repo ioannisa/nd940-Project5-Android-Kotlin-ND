@@ -6,34 +6,65 @@ import android.location.Location
 import android.os.Bundle
 import android.view.*
 import android.view.inputmethod.InputMethodManager
+import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import com.example.android.politicalpreparedness.databinding.FragmentLaunchBinding
+import com.example.android.politicalpreparedness.databinding.FragmentRepresentativeBinding
+import com.example.android.politicalpreparedness.election.ElectionsViewModel
+import com.example.android.politicalpreparedness.election.ElectionsViewModelFactory
+import com.example.android.politicalpreparedness.election.adapter.ElectionListAdapter
 import com.example.android.politicalpreparedness.network.models.Address
+import com.example.android.politicalpreparedness.network.models.Election
+import com.example.android.politicalpreparedness.representative.adapter.RepresentativeListAdapter
+import com.example.android.politicalpreparedness.representative.model.Representative
 import java.util.Locale
 
-class DetailFragment : Fragment() {
+class RepresentativeFragment : Fragment() {
 
     companion object {
         //TODO COMPLETED: Add Constant for Location request
         private const val ACCESS_FINE_LOCATION = 1
     }
 
-    //TODO: Declare ViewModel
+    //TODO COMPLETED: Declare ViewModel
+    private lateinit var viewModel: RepresentativeViewModel
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
 
-        //TODO: Establish bindings
-        val binding = FragmentLaunchBinding.inflate(inflater)
+        //TODO COMPLETED: Establish bindings
+        val binding = FragmentRepresentativeBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
-        //TODO: Define and assign Representative adapter
+        //TODO COMPLETED: Add ViewModel values and create ViewModel
+        val viewModelFactory = RepresentativeViewModelFractory(requireActivity().application)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(RepresentativeViewModel::class.java)
+        binding.viewModel = viewModel
 
+        //TODO: Define and assign Representative adapter
         //TODO: Populate Representative adapter
+        val adapterRepresentatives = RepresentativeListAdapter()
+        binding.rvRepresentatives.adapter = adapterRepresentatives
+
+        viewModel.getRepresentatives(getManualAddress())
 
         //TODO: Establish button listeners for field and location search
         return binding.root
+    }
+
+    fun getManualAddress(): Address{
+        //hideKeyboard()
+
+        return Address(
+                line1 = "3324 Eagle Way",
+                line2 = null,
+                city = "Rosamond",
+                state = "CA",
+                zip = "93560"
+        )
     }
 
 // TODO UNCOMMENT:
@@ -68,10 +99,17 @@ class DetailFragment : Fragment() {
 //                }
 //                .first()
 //    }
-//
-//    private fun hideKeyboard() {
-//        val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-//        imm.hideSoftInputFromWindow(view!!.windowToken, 0)
-//    }
 
+    private fun hideKeyboard() {
+        val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(requireView().windowToken, 0)
+    }
+
+}
+
+//TODO COMPLETED: Refresh adapters when fragment loads
+@BindingAdapter("listRepresentativeData")
+fun bindRecyclerView(recyclerView: RecyclerView, data: List<Representative>?){
+    val adapter = recyclerView.adapter as RepresentativeListAdapter
+    adapter.submitList(data)
 }

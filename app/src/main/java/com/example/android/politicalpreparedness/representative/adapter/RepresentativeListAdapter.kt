@@ -3,6 +3,7 @@ package com.example.android.politicalpreparedness.representative.adapter
 import android.content.Intent
 import android.content.Intent.ACTION_VIEW
 import android.net.Uri
+import android.opengl.Visibility
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,11 +28,6 @@ class RepresentativeListAdapter: ListAdapter<Representative, RepresentativeViewH
 
         // Same contents if dataclasses' equality is the same
         override fun areContentsTheSame(oldItem: Representative, newItem: Representative) = (oldItem == newItem)
-    }
-
-    //TODO COMPLETED: Create RepresentativeListener
-    class RepresentativeListener(val clickListener: (election: Representative) -> Unit) {
-        fun onClick(representative: Representative) = clickListener(representative)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepresentativeViewHolder {

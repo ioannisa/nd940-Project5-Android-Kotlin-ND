@@ -14,8 +14,8 @@ class ElectionsViewModel(application: Application): AndroidViewModel(application
 
     //TODO COMPLETED: Create live data val for saved elections
     //TODO COMPLETED: Create val and functions to populate live data for upcoming elections from the API and saved elections from local database
-    val electionsList: LiveData<List<Election>> = repository.electionsList
-    val savedElectioinsList: LiveData<List<Election>> = repository.savedElectioinsList
+    val electionsList: LiveData<List<Election>> get() = repository.electionsList
+    val savedElectioinsList: LiveData<List<Election>> get() = repository.savedElectioinsList
 
     init{
         refreshData()
